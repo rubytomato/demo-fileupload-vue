@@ -1,0 +1,7 @@
+{
+  "title": "テストタイトル",
+  "description": "テストデスクリプション",
+  "platforms": ["GC"],
+  "million": false,
+  "releasedAt": "2018-05-15"
+}
