@@ -33,30 +33,41 @@ exports.addMemo = functions.https.onRequest((req, res) => {
   console.log(memo);
 
   admin.firestore().collection('memos')
+    // firebase.firestore.DocumentReference
     .add(memo)
-    // FirebaseFirestore.DocumentReference
     .then(docRef => {
       console.log(docRef);
       // return res.status(200).send(docRef.id);
+      // firebase.firestore.DocumentSnapshot
       return docRef.get();
     })
-    // firebase.firestore.DocumentSnapshot
     .then(snapshot => {
       console.log(snapshot);
       console.log(snapshot.id);
       if (snapshot.exists) {
+        // firebase.firestore.Firestore~DocumentData or undefined
         return res.status(200).send(snapshot.data());
       }
       return res.status(400).send("Data Not Found !!");
     })
     .catch(err => {
       console.error(err);
-      return res.status(500).send('Error adding document:', err)
+      res.status(500).send('Error adding document:', err);
     });
 });
 
 exports.fileupload = functions.https.onRequest((req, res) => {
+  // CORS
+  if (req.method === 'OPTIONS') {
+    console.log(req.headers);
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Methods', 'POST');
+    res.status(200).end();
+    return;
+  }
   if (req.method !== 'POST') {
+    console.warn('Not Allowed: ' + req.method);
     res.status(405).send('Method Not Allowed');
     return;
   }
@@ -64,9 +75,9 @@ exports.fileupload = functions.https.onRequest((req, res) => {
   const busboy = new Busboy({ headers: req.headers });
   // This object will accumulate all the uploaded files, keyed by their name.
   const uploads = {};
-  const allowMimeTypes = ['image/png', 'image/jpg'];
+  const allowMimeTypes = ['image/png', 'image/jpg', 'image/jpeg'];
   // file upload bucket
-  const bucket = storage.bucket('gs://project*********.appspot.com');
+  const bucket = storage.bucket(functions.config().fileupload.bucket.name);
 
   // This callback will be invoked for each file uploaded.
   busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
@@ -90,14 +101,16 @@ exports.fileupload = functions.https.onRequest((req, res) => {
             fs.unlink(filepath, (err) => {
               if (err) {
                 reject(err);
+              } else {
+                resolve();  
               }
-              resolve();
             });
           });
         })
         .catch(err => {
           console.error(err);
           // TODO error handling
+          throw new Error(err);
         });
     });
   });

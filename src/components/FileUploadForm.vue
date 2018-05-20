@@ -17,6 +17,11 @@
 <script>
 import axios from 'axios'
 
+const instance = axios.create({
+  baseURL: process.env.SITE_URL,
+  timeout: 10000
+})
+
 export default {
   name: 'FileUploadForm',
   data () {
@@ -32,7 +37,7 @@ export default {
     onUpload () {
       const fd = new FormData()
       fd.append('file', this.selectedFile, this.selectedFile.name)
-      axios.post('https://project*********.firebaseapp.com/upload', fd, {
+      instance.post('/upload', fd, {
         onUploadProgress: (uploadEvent) => {
           const progress = Math.round(uploadEvent.loaded / uploadEvent.total * 100) + '%'
           this.uploadProgress = progress
