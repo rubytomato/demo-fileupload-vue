@@ -8,7 +8,7 @@
       </form>
       <div class="progress">
         <p>upload progress</p>
-        <p>{{ uploadProgress }}</p>
+        <progress v-bind:value="uploadProgress" max="100">0%</progress>
       </div>
     </div>
   </div>
@@ -27,7 +27,7 @@ export default {
   data () {
     return {
       selectedFile: null,
-      uploadProgress: '0%'
+      uploadProgress: '0'
     }
   },
   methods: {
@@ -39,16 +39,16 @@ export default {
       fd.append('file', this.selectedFile, this.selectedFile.name)
       instance.post('/upload', fd, {
         onUploadProgress: (uploadEvent) => {
-          const progress = Math.round(uploadEvent.loaded / uploadEvent.total * 100) + '%'
-          this.uploadProgress = progress
+          const progress = Math.round(uploadEvent.loaded / uploadEvent.total * 100)
+          this.uploadProgress = progress + ''
         }
       })
         .then(res => {
-          this.uploadProgress = 'upload completed'
+          // this.uploadProgress = 'upload completed'
         })
         .catch(err => {
           console.error(err)
-          this.uploadProgress = 'upload error'
+          // this.uploadProgress = 'upload error'
         })
     }
   }

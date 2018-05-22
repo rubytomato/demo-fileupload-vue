@@ -3,7 +3,8 @@
     <img src="./assets/logo.png">
     <div>
       <router-link to="/">Home</router-link>
-      <router-link to="/form">Form</router-link>
+      <router-link to="/upload-form">Upload</router-link>
+      <router-link to="/download-form">Download</router-link>
     </div>
     <router-view/>
   </div>

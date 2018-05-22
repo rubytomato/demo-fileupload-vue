@@ -20,6 +20,15 @@
             "value": "*"
           }
         ]
+      },
+      {
+        "source": "**/download",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          }
+        ]
       }
     ],
     "rewrites": [
@@ -30,6 +39,10 @@
       {
         "source": "/upload",
         "function": "fileupload"
+      },
+      {
+        "source": "/download",
+        "function": "filedownload"
       },
       {
         "source": "**",

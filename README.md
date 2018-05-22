@@ -54,6 +54,12 @@ curl -v -X POST "https://us-central1-project*********.cloudfunctions.net/fileupl
 curl -v -X POST "https://us-central1-project*********.cloudfunctions.net/fileupload" -F "file1=@test1.jpg;type=image/jpg" -F "file2=@test2.png;type=image/png"
 ```
 
+### filedownload
+
+``` text
+curl -v "https://us-central1-project*********.cloudfunctions.net/filedownload?file={file_name}"
+```
+
 ## Hosting
 
 ``` text
@@ -76,6 +82,12 @@ Functions: fileupload
 
 ``` text
 curl -v -X POST "https://project*********.firebaseapp.com/upload" -F "file=@logo.png;type=image/png"
+```
+
+#### /download
+
+``` text
+curl -v "https://project*********.firebaseapp.com/download?file={file_name}"
 ```
 
 ## mermaid demo

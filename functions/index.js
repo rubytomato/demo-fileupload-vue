@@ -129,3 +129,46 @@ exports.fileupload = functions.https.onRequest((req, res) => {
   // busboy, and get a callback when it's finished.
   busboy.end(req.rawBody);
 });
+
+exports.filedownload = functions.https.onRequest((req, res) => {
+  if (req.method !== 'GET') {
+    console.warn('Not Allowed: ' + req.method);
+    res.status(405).send('Method Not Allowed');
+    return;
+  }
+  if (!req.query.file) {
+    res.status(400).send('Request Parameter');
+    return;
+  }
+
+  const bucket = storage.bucket(functions.config().fileupload.bucket.name);
+  const file = bucket.file(`upload_images/${req.query.file}`);
+  file.exists()
+    .then(data => {
+      console.log(data);
+      return new Promise((resolve, reject) => {
+        if (!data[0]) {
+          reject(new Error(`file not found: ${req.query.file}`));
+        } else {
+          const config = {
+            action: 'read',
+            expires: '2018-05-30'
+          };
+          resolve(file.getSignedUrl(config));
+        }
+      });
+    })
+    .then(results => {
+      return res.status(200).json({ url: results[0] });
+    })
+    .catch(err => {
+      console.error(err);
+      return res.status(400).json({ message: "file not found" });
+    });
+  // https://cloud.google.com/nodejs/docs/reference/storage/1.6.x/File#exists
+  // exists(options, callback) returns Promise containing FileExistsResponse
+  // bucket.file(`upload_images/${req.query.file}`).exists()
+
+  // https://cloud.google.com/nodejs/docs/reference/storage/1.6.x/File#getSignedUrl
+  // getSignedUrl(config, callback) returns Promise containing GetSignedUrlResponse
+});
