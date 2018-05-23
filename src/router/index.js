@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import FileUploadForm from '@/components/FileUploadForm'
 import FileDownloadForm from '@/components/FileDownloadForm'
+import Parallax from '@/components/Parallax'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/download-form',
       name: 'FileDownloadForm',
       component: FileDownloadForm
+    },
+    {
+      path: '/parallax',
+      name: 'Parallax',
+      component: Parallax
     }
   ]
 })

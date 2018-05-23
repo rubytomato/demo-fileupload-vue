@@ -1,5 +1,7 @@
 <template>
   <div class="upload">
+    <img src="@/assets/logo.png">
+    <slot name="nav"></slot>
     <h1>File Upload</h1>
     <div>
       <form>

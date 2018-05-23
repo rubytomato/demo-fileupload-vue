@@ -1,5 +1,7 @@
 <template>
   <div class="download">
+    <img src="@/assets/logo.png">
+    <slot name="nav"></slot>
     <h1>File Download</h1>
     <div>
       <form>
