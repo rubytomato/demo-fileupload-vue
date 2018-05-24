@@ -1,20 +1,27 @@
 <template>
-  <v-content class="upload">
+  <v-content class="upload page">
     <slot name="nav"></slot>
     <h1>File Upload</h1>
-    <div>
-      <form>
-        <input type="file" @change="onFileSelected">
-        <v-btn depressed color="info" @click.prevent="onUpload">Upload</v-btn>
-      </form>
-      <div class="progress">
-        <p>upload progress</p>
-        <v-progress-circular v-bind:value="uploadProgress"></v-progress-circular>
-      </div>
-    </div>
-    <v-alert :value="true" type="success">
-      This is a success alert.
-    </v-alert>
+    <v-container fluid>
+      <v-layout row>
+        <v-flex xs9>
+          <form>
+            <input type="file" @change="onFileSelected">
+            <v-btn depressed color="info" @click.prevent="onUpload">Upload</v-btn>
+          </form>
+        </v-flex>
+        <v-flex xs3>
+          <v-progress-circular v-bind:value="uploadProgress"></v-progress-circular>
+        </v-flex>
+      </v-layout>
+      <v-layout row>
+        <v-flex xs12>
+          <v-alert :value="true" type="success">
+            This is a success alert.
+          </v-alert>
+        </v-flex>
+      </v-layout>
+    </v-container>
     <slot name="footer"></slot>
   </v-content>
 </template>

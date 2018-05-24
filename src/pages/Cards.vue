@@ -1,7 +1,7 @@
 <template>
-  <div class="cards">
+  <v-content class="cards page">
     <slot name="nav"></slot>
-    <div id="e3" style="max-width: 500px; margin: 20px auto;" class="grey lighten-3">
+    <div style="max-width: 500px; margin: 20px auto;" class="grey lighten-3">
       <v-card>
         <v-container fluid style="min-height: 0; text-align: left;" grid-list-lg>
           <transition-group name="card-anim">
@@ -11,21 +11,20 @@
           </transition-group>
         </v-container>
       </v-card>
-      <div>
-        <v-container fluid style="min-height: 0;">
-          <v-layout row>
-            <v-flex xs6>
-              <v-btn color="success" v-on:click="addList">More</v-btn>
-            </v-flex>
-            <v-flex xs6>
-              <v-btn color="warning" v-on:click="removeList">Remove</v-btn>
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </div>
+      <!-- button -->
+      <v-container fluid style="min-height: 0;">
+        <v-layout row>
+          <v-flex xs6>
+            <v-btn color="success" v-on:click="addList">More</v-btn>
+          </v-flex>
+          <v-flex xs6>
+            <v-btn color="warning" v-on:click="removeList">Remove</v-btn>
+          </v-flex>
+        </v-layout>
+      </v-container>
     </div>
     <slot name="footer"></slot>
-  </div>
+  </v-content>
 </template>
 
 <script>

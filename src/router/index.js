@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import FileUploadForm from '@/components/FileUploadForm'
-import FileDownloadForm from '@/components/FileDownloadForm'
-import Parallax from '@/components/Parallax'
-import Cards from '@/components/Cards'
+import HelloWorld from '@/pages/HelloWorld'
+import FileUploadForm from '@/pages/FileUploadForm'
+import FileDownloadForm from '@/pages/FileDownloadForm'
+import Parallax from '@/pages/Parallax'
+import Cards from '@/pages/Cards'
 
 Vue.use(Router)
 

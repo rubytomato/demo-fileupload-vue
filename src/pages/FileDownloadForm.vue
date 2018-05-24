@@ -1,33 +1,31 @@
 <template>
-  <v-content class="download">
+  <v-content class="download page">
     <slot name="nav"></slot>
     <h1>File Download</h1>
-    <div>
-      <v-container fluid>
-        <v-layout row>
-          <v-flex xs3></v-flex>
-          <v-flex xs4>
-            <v-text-field
-              id="testing"
-              name="input-1"
-              label="Download File Name"
-              @change="onFileSelected"></v-text-field>
-          </v-flex>
-          <v-flex xs3>
-            <v-btn depressed color="info" @click.prevent="onDownload">Download</v-btn>
-          </v-flex>
-          <v-flex xs2></v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex xs12>
-            <v-subheader>Image list</v-subheader>
-            <p v-for="(img, index) in imageList" v-bind:key="index">
-              <img v-bind:src="img">
-            </p>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </div>
+    <v-container fluid tag="div">
+      <v-layout row>
+        <v-flex xs3></v-flex>
+        <v-flex xs4>
+          <v-text-field
+            id="file-name"
+            name="file-name"
+            label="Download File Name"
+            @change="onFileSelected"></v-text-field>
+        </v-flex>
+        <v-flex xs3>
+          <v-btn depressed color="info" @click.prevent="onDownload">Download</v-btn>
+        </v-flex>
+        <v-flex xs2></v-flex>
+      </v-layout>
+      <v-layout row>
+        <v-flex xs12>
+          <v-subheader>Image list</v-subheader>
+          <p v-for="(img, index) in imageList" v-bind:key="index">
+            <img v-bind:src="img">
+          </p>
+        </v-flex>
+      </v-layout>
+    </v-container>
     <slot name="footer"></slot>
   </v-content>
 </template>
