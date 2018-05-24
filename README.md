@@ -26,18 +26,18 @@ npm run build --report
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
-## Functions
+## Cloud Functions for Firebase
 
 ### helloWorld
 
 ``` text
-curl -v "https://us-central1-project*********.cloudfunctions.net/helloWorld"
+curl -v "https://us-central1-{PROJECT-ID}.cloudfunctions.net/helloWorld"
 ```
 
 ### addMemo
 
 ``` text
-curl -v -X POST -H "Content-Type:application/json" "https://us-central1-project*********.cloudfunctions.net/addMemo" -d @new_memo.json
+curl -v -X POST -H "Content-Type:application/json" "https://us-central1-{PROJECT-ID}.cloudfunctions.net/addMemo" -d @new_memo.json
 ```
 
 ``` json
@@ -53,23 +53,23 @@ curl -v -X POST -H "Content-Type:application/json" "https://us-central1-project*
 ### fileupload
 
 ``` text
-curl -v -X POST "https://us-central1-project*********.cloudfunctions.net/fileupload" -F "file=@logo.png;type=image/png"
+curl -v -X POST "https://us-central1-{PROJECT-ID}.cloudfunctions.net/fileupload" -F "file=@logo.png;type=image/png"
 ```
 
 ``` text
-curl -v -X POST "https://us-central1-project*********.cloudfunctions.net/fileupload" -F "file1=@test1.jpg;type=image/jpg" -F "file2=@test2.png;type=image/png"
+curl -v -X POST "https://us-central1-{PROJECT-ID}.cloudfunctions.net/fileupload" -F "file1=@test1.jpg;type=image/jpg" -F "file2=@test2.png;type=image/png"
 ```
 
 ### filedownload
 
 ``` text
-curl -v "https://us-central1-project*********.cloudfunctions.net/filedownload?file={file_name}"
+curl -v "https://us-central1-{PROJECT-ID}.cloudfunctions.net/filedownload?file={file_name}"
 ```
 
-## Hosting
+## Firebase Hosting
 
 ``` text
-https://project*********.firebaseapp.com
+https://{PROJECT-ID}.firebaseapp.com
 ```
 
 ### rewrites
@@ -79,7 +79,7 @@ https://project*********.firebaseapp.com
 Functions: helloWorld
 
 ``` text
-curl -v "https://project*********.firebaseapp.com/hello"
+curl -v "https://{PROJECT-ID}.firebaseapp.com/hello"
 ```
 
 #### /upload
@@ -87,13 +87,13 @@ curl -v "https://project*********.firebaseapp.com/hello"
 Functions: fileupload
 
 ``` text
-curl -v -X POST "https://project*********.firebaseapp.com/upload" -F "file=@logo.png;type=image/png"
+curl -v -X POST "https://{PROJECT-ID}.firebaseapp.com/upload" -F "file=@logo.png;type=image/png"
 ```
 
 #### /download
 
 ``` text
-curl -v "https://project*********.firebaseapp.com/download?file={file_name}"
+curl -v "https://{PROJECT-ID}.firebaseapp.com/download?file={file_name}"
 ```
 
 ## mermaid demo
