@@ -1,6 +1,5 @@
 <template>
-  <div class="hello">
-    <img src="@/assets/logo.png">
+  <v-content class="hello">
     <slot name="nav"></slot>
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
@@ -82,7 +81,8 @@
         </a>
       </li>
     </ul>
-  </div>
+    <slot name="footer"></slot>
+  </v-content>
 </template>
 
 <script>

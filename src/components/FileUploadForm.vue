@@ -1,19 +1,22 @@
 <template>
-  <div class="upload">
-    <img src="@/assets/logo.png">
+  <v-content class="upload">
     <slot name="nav"></slot>
     <h1>File Upload</h1>
     <div>
       <form>
         <input type="file" @change="onFileSelected">
-        <button @click.prevent="onUpload">Upload</button>
+        <v-btn depressed color="info" @click.prevent="onUpload">Upload</v-btn>
       </form>
       <div class="progress">
         <p>upload progress</p>
-        <progress v-bind:value="uploadProgress" max="100">0%</progress>
+        <v-progress-circular v-bind:value="uploadProgress"></v-progress-circular>
       </div>
     </div>
-  </div>
+    <v-alert :value="true" type="success">
+      This is a success alert.
+    </v-alert>
+    <slot name="footer"></slot>
+  </v-content>
 </template>
 
 <script>
@@ -29,7 +32,7 @@ export default {
   data () {
     return {
       selectedFile: null,
-      uploadProgress: '0'
+      uploadProgress: 0
     }
   },
   methods: {
@@ -42,7 +45,7 @@ export default {
       instance.post('/upload', fd, {
         onUploadProgress: (uploadEvent) => {
           const progress = Math.round(uploadEvent.loaded / uploadEvent.total * 100)
-          this.uploadProgress = progress + ''
+          this.uploadProgress = progress
         }
       })
         .then(res => {

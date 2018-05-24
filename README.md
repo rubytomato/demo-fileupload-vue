@@ -2,6 +2,12 @@
 
 > A Vue.js project
 
+## Devendency Modules
+
+* [axios](https://github.com/axios/axios)
+* [Vutify](https://vuetifyjs.com/ja/)
+* [material-design-icons-iconfont](https://github.com/jossef/material-design-icons-iconfont)
+
 ## Build Setup
 
 ``` bash

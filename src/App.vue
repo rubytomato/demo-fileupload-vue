@@ -1,14 +1,23 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <router-view>
-      <div slot="nav">
-        <router-link to="/">Home</router-link>
-        <router-link to="/parallax">Parallax</router-link>
-        <router-link to="/upload-form">Upload</router-link>
-        <router-link to="/download-form">Download</router-link>
-      </div>
+      <v-toolbar slot="nav">
+        <v-toolbar-title>Vue.js App</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-toolbar-items class="hidden-sm-and-down">
+          <v-btn flat :to="{path: '/'}">Home</v-btn>
+          <v-btn flat :to="{path: '/cards'}">Cards</v-btn>
+          <v-btn flat :to="{path: '/parallax'}">Parallax</v-btn>
+          <v-btn flat :to="{path: '/upload-form'}">Upload</v-btn>
+          <v-btn flat :to="{path: '/download-form'}">Download</v-btn>
+        </v-toolbar-items>
+      </v-toolbar>
+      <v-footer class="pa-3" slot="footer">
+        <v-spacer></v-spacer>
+        <div>{{ new Date().getFullYear() }}</div>
+      </v-footer>
     </router-view>
-  </div>
+  </v-app>
 </template>
 
 <script>
