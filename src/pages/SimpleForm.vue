@@ -12,7 +12,7 @@
           </v-flex>
           <v-flex xs8 text-xs-left>
             <v-card class="pa-1">
-              <text-input v-model="form.name" label="name" />
+              <text-input v-model="form.name" label="name" addClass="ma-1" />
             </v-card>
           </v-flex>
         </v-layout>
@@ -24,7 +24,7 @@
           </v-flex>
           <v-flex xs8 text-xs-left>
             <v-card class="pa-1">
-              <text-input v-model="form.email" label="email" />
+              <text-input v-model="form.email" label="email" addClass="ma-1" />
             </v-card>
           </v-flex>
         </v-layout>
@@ -40,7 +40,7 @@
               <!--
                 <input type="text" v-bind:value="text" v-on:input="$emit('input', $event.target.value)" >
               -->
-              <text-input v-model="form.address" label="address" />
+              <text-input v-model="form.address" label="address" addClass="ma-1" />
             </v-card>
           </v-flex>
         </v-layout>
@@ -53,7 +53,7 @@
           </v-flex>
           <v-flex xs8 text-xs-left>
             <v-card class="pa-1">
-              <radio-input v-model="form.fruit" v-bind:items="fruits" label="fruit" />
+              <radio-button v-model="form.fruit" v-bind:items="fruits" label="fruit" addClass="ma-1" />
             </v-card>
           </v-flex>
         </v-layout>
@@ -67,7 +67,7 @@
           </v-flex>
           <v-flex xs8 text-xs-left>
             <v-card class="pa-1">
-              <checkbox-input v-model="form.soups" v-bind:items="soups" label="soup" />
+              <multi-checkbox v-model="form.soups" v-bind:items="soups" label="soup" addClass="ma-1" />
             </v-card>
           </v-flex>
         </v-layout>
@@ -97,9 +97,9 @@
 </template>
 
 <script>
-import TextInput from '@/components/TextInput'
-import RadioInput from '@/components/RadioInput'
-import CheckboxInput from '@/components/CheckboxInput'
+import TextInput from '@/forms/TextInput'
+import RadioButton from '@/forms/RadioButton'
+import MultiCheckbox from '@/forms/MultiCheckbox'
 import axios from 'axios'
 
 const instance = axios.create({
@@ -111,8 +111,8 @@ export default {
   name: 'SimpleForm',
   components: {
     'text-input': TextInput,
-    'radio-input': RadioInput,
-    'checkbox-input': CheckboxInput
+    'radio-button': RadioButton,
+    'multi-checkbox': MultiCheckbox
   },
   data () {
     return {
@@ -138,12 +138,7 @@ export default {
   methods: {
     onSubmit (event) {
       console.log('onSubmit', event)
-      console.log(this.form.name)
-      console.log(this.form.email)
-      console.log(this.form.address)
-      console.log(this.form.fruit)
-      console.log(this.form.soups)
-      console.log(instance)
+      console.log(this.form)
     },
     onClear (event) {
       console.log('onClear: ', event)
@@ -153,16 +148,8 @@ export default {
       this.form.fruit = ''
       this.form.soups = []
     },
-    onChange (values) {
-      console.log('onChange: ', values)
-      if (values[0].checked) {
-        this.form.soups.push(values[0].value)
-      } else {
-        const index = this.form.soups.findIndex(item => item === values[0].value)
-        if (index !== -1) {
-          this.form.soups.splice(index, 1)
-        }
-      }
+    notice () {
+      console.log(instance)
     }
   }
 }

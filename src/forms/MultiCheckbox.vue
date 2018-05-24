@@ -2,7 +2,7 @@
   <div>
     <p><small>{{ label }}</small></p>
     <label v-for="(item, index) in items" v-bind:key="index">
-      <input type="checkbox" v-bind:value="item" v-bind:checked="selectedItems.includes(item)" v-model="selectedItems" v-on="listeners" v-bind="$attrs" class="ma-1">
+      <input type="checkbox" v-bind:value="item" v-bind:checked="selectedItems.includes(item)" v-model="selectedItems" v-on="listeners" v-bind="$attrs" v-bind:class="addClass">
       <span>{{ item }}</span>
     </label>
   </div>
@@ -11,7 +11,7 @@
 <script>
 export default {
   inheritAttrs: false,
-  name: 'CheckboxInput',
+  name: 'MultiCheckbox',
   model: {
     prop: 'values'
   },
@@ -27,6 +27,9 @@ export default {
     'label': {
       type: String,
       required: true
+    },
+    'addClass': {
+      type: String
     }
   },
   data () {
@@ -35,7 +38,7 @@ export default {
     }
   },
   mounted () {
-    console.log('CheckboxInput.mounted values: ' + this.values)
+    console.log('MultiCheckbox.mounted values: ' + this.values)
   },
   updated () {
   },

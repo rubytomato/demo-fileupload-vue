@@ -2,7 +2,7 @@
   <div>
     <p><small>{{ label }}</small></p>
     <label v-for="(item, index) in items" v-bind:key="index">
-      <input type="radio" v-bind:value="item.value" v-bind:checked="item.value === value" v-on="listeners" v-bind="$attrs" class="ma-1">
+      <input type="radio" v-bind:value="item.value" v-bind:checked="item.value === value" v-on="listeners" v-bind="$attrs" v-bind:class="addClass">
       <span>{{ item.key }}</span>
     </label>
   </div>
@@ -11,7 +11,7 @@
 <script>
 export default {
   inheritAttrs: false,
-  name: 'RadioInput',
+  name: 'RadioButton',
   model: {
     prop: 'value'
   },
@@ -27,10 +27,13 @@ export default {
     'label': {
       type: String,
       required: true
+    },
+    'addClass': {
+      type: String
     }
   },
   mounted () {
-    console.log('RadioInput.mounted value: ' + this.value)
+    console.log('RadioButton.mounted value: ' + this.value)
   },
   updated () {
   },

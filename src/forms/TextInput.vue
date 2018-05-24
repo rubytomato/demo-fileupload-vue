@@ -1,7 +1,7 @@
 <template>
   <label>
     <small>{{ label }}</small>
-    <input type="text" v-bind:value="value" v-on="listeners" v-bind="$attrs" style="width: 98%; font-size: 1.4em;" class="ma-1">
+    <input type="text" v-bind:value="value" v-on="listeners" v-bind="$attrs" style="width: 98%; font-size: 1.4em;" v-bind:class="addClass">
   </label>
 </template>
 
@@ -15,6 +15,9 @@ export default {
       required: true
     },
     'label': {
+      type: String
+    },
+    'addClass': {
       type: String
     }
   },
