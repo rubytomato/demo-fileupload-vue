@@ -4,13 +4,13 @@
     <h1>File Upload</h1>
     <v-container fluid>
       <v-layout row>
-        <v-flex xs9>
+        <v-flex xs7 offset-xs1>
           <form>
             <input type="file" @change="onFileSelected">
             <v-btn depressed color="info" @click.prevent="onUpload">Upload</v-btn>
           </form>
         </v-flex>
-        <v-flex xs3>
+        <v-flex xs1 offset-xs1>
           <v-progress-circular v-bind:value="uploadProgress"></v-progress-circular>
         </v-flex>
       </v-layout>

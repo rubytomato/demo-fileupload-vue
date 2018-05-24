@@ -2,6 +2,7 @@
   <v-app id="app">
     <router-view>
       <v-toolbar slot="nav">
+        <v-toolbar-side-icon></v-toolbar-side-icon>
         <v-toolbar-title>Vue.js App</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-sm-and-down">
@@ -12,7 +13,8 @@
           <v-btn flat :to="{path: '/download-form'}">Download</v-btn>
         </v-toolbar-items>
       </v-toolbar>
-      <v-footer class="pa-3" slot="footer">
+      <!--p: padding-->
+      <v-footer class="pa-5" slot="footer" color="cyan lighten-5">
         <v-spacer></v-spacer>
         <div>{{ new Date().getFullYear() }}</div>
       </v-footer>

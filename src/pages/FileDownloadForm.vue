@@ -4,21 +4,19 @@
     <h1>File Download</h1>
     <v-container fluid tag="div">
       <v-layout row>
-        <v-flex xs3></v-flex>
-        <v-flex xs4>
+        <v-flex xs3 offset-xs2>
           <v-text-field
             id="file-name"
             name="file-name"
             label="Download File Name"
             @change="onFileSelected"></v-text-field>
         </v-flex>
-        <v-flex xs3>
+        <v-flex xs3 offset-xs1>
           <v-btn depressed color="info" @click.prevent="onDownload">Download</v-btn>
         </v-flex>
-        <v-flex xs2></v-flex>
       </v-layout>
       <v-layout row>
-        <v-flex xs12>
+        <v-flex xs8 offset-xs2>
           <v-subheader>Image list</v-subheader>
           <p v-for="(img, index) in imageList" v-bind:key="index">
             <img v-bind:src="img">
