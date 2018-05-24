@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app">
+  <v-app id="app" light>
     <router-view>
       <v-toolbar slot="nav">
         <v-toolbar-side-icon></v-toolbar-side-icon>
@@ -9,6 +9,7 @@
           <v-btn flat :to="{path: '/'}">Home</v-btn>
           <v-btn flat :to="{path: '/cards'}">Cards</v-btn>
           <v-btn flat :to="{path: '/parallax'}">Parallax</v-btn>
+          <v-btn flat :to="{path: '/simple-form'}">Simple</v-btn>
           <v-btn flat :to="{path: '/upload-form'}">Upload</v-btn>
           <v-btn flat :to="{path: '/download-form'}">Download</v-btn>
         </v-toolbar-items>

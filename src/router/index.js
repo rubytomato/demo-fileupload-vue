@@ -5,6 +5,7 @@ import FileUploadForm from '@/pages/FileUploadForm'
 import FileDownloadForm from '@/pages/FileDownloadForm'
 import Parallax from '@/pages/Parallax'
 import Cards from '@/pages/Cards'
+import SimpleForm from '@/pages/SimpleForm'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
       path: '/download-form',
       name: 'FileDownloadForm',
       component: FileDownloadForm
+    },
+    {
+      path: '/simple-form',
+      name: 'SimpleForm',
+      component: SimpleForm
     },
     {
       path: '/parallax',

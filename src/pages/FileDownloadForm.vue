@@ -1,10 +1,10 @@
 <template>
   <v-content class="download page">
     <slot name="nav"></slot>
-    <h1>File Download</h1>
-    <v-container fluid tag="div">
+    <h1 class="display-1 ma-2">File Download</h1>
+    <v-container fluid>
       <v-layout row>
-        <v-flex xs3 offset-xs2>
+        <v-flex xs3 offset-xs3>
           <v-text-field
             id="file-name"
             name="file-name"
@@ -16,7 +16,7 @@
         </v-flex>
       </v-layout>
       <v-layout row>
-        <v-flex xs8 offset-xs2>
+        <v-flex xs9 offset-xs3>
           <v-subheader>Image list</v-subheader>
           <p v-for="(img, index) in imageList" v-bind:key="index">
             <img v-bind:src="img">
@@ -33,7 +33,7 @@ import axios from 'axios'
 
 const instance = axios.create({
   baseURL: process.env.SITE_URL,
-  timeout: 10000
+  timeout: 30000
 })
 
 export default {

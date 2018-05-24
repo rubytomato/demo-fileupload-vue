@@ -1,7 +1,7 @@
 <template>
   <v-content class="hello page">
     <slot name="nav"></slot>
-    <h1>{{ msg }}</h1>
+    <h1 class="display-1 ma-2">{{ msg }}</h1>
     <v-container fluid tag="div">
       <v-layout row>
         <v-flex xs12>

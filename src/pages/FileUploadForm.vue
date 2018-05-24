@@ -1,22 +1,24 @@
 <template>
   <v-content class="upload page">
     <slot name="nav"></slot>
-    <h1>File Upload</h1>
+    <h1 class="display-1 ma-2">File Upload</h1>
     <v-container fluid>
       <v-layout row>
-        <v-flex xs7 offset-xs1>
+        <v-flex xs12>
           <form>
-            <input type="file" @change="onFileSelected">
-            <v-btn depressed color="info" @click.prevent="onUpload">Upload</v-btn>
+            <input type="file" v-on:change="onFileSelected">
+            <v-btn depressed color="info" v-on:click.prevent="onUpload">Upload</v-btn>
           </form>
-        </v-flex>
-        <v-flex xs1 offset-xs1>
-          <v-progress-circular v-bind:value="uploadProgress"></v-progress-circular>
         </v-flex>
       </v-layout>
       <v-layout row>
         <v-flex xs12>
-          <v-alert :value="true" type="success">
+          <v-progress-circular :size="100" :width="15" :rotate="180" v-bind:value="uploadProgress" color="pink">{{ uploadProgress }}</v-progress-circular>
+        </v-flex>
+      </v-layout>
+      <v-layout row>
+        <v-flex xs12>
+          <v-alert :value="uploadCompleted" type="success" v-if="uploadCompleted">
             This is a success alert.
           </v-alert>
         </v-flex>
@@ -31,7 +33,7 @@ import axios from 'axios'
 
 const instance = axios.create({
   baseURL: process.env.SITE_URL,
-  timeout: 10000
+  timeout: 30000
 })
 
 export default {
@@ -39,7 +41,8 @@ export default {
   data () {
     return {
       selectedFile: null,
-      uploadProgress: 0
+      uploadProgress: 0,
+      uploadCompleted: false
     }
   },
   methods: {
@@ -56,11 +59,10 @@ export default {
         }
       })
         .then(res => {
-          // this.uploadProgress = 'upload completed'
+          this.uploadCompleted = true
         })
         .catch(err => {
           console.error(err)
-          // this.uploadProgress = 'upload error'
         })
     }
   }
