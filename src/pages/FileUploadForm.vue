@@ -21,6 +21,9 @@
           <v-alert :value="uploadCompleted" type="success" v-if="uploadCompleted">
             This is a success alert.
           </v-alert>
+          <v-alert :value="uploadFailed" type="error" v-if="uploadFailed">
+            This is a error alert.
+          </v-alert>
         </v-flex>
       </v-layout>
     </v-container>
@@ -42,7 +45,8 @@ export default {
     return {
       selectedFile: null,
       uploadProgress: 0,
-      uploadCompleted: false
+      uploadCompleted: false,
+      uploadFailed: false
     }
   },
   methods: {
@@ -63,6 +67,10 @@ export default {
         })
         .catch(err => {
           console.error(err)
+          this.uploadFailed = true
+        })
+        .finally(() => {
+          console.log('upload finish')
         })
     }
   }

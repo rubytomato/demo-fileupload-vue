@@ -75,7 +75,7 @@
           <v-flex xs2 offset-xs3>
             <v-btn depressed color="info" v-on:click="onSubmit">Submit</v-btn>
           </v-flex>
-          <v-flex xs2 offset-xs1>
+          <v-flex xs2>
             <v-btn depressed color="success" v-on:click="onClear">Clear</v-btn>
           </v-flex>
         </v-layout>
@@ -100,12 +100,6 @@
 import TextInput from '@/forms/TextInput'
 import RadioButton from '@/forms/RadioButton'
 import MultiCheckbox from '@/forms/MultiCheckbox'
-import axios from 'axios'
-
-const instance = axios.create({
-  baseURL: process.env.SITE_URL,
-  timeout: 30000
-})
 
 export default {
   name: 'SimpleForm',
@@ -147,9 +141,6 @@ export default {
       this.form.address = ''
       this.form.fruit = ''
       this.form.soups = []
-    },
-    notice () {
-      console.log(instance)
     }
   }
 }
